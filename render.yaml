@@ -15,10 +15,8 @@ services:
         value: https://mindsearch-app.onrender.com
 
   # Frontend static site
-  - type: web
+  - type: static
     name: mindsearch-app
-    runtime: static
-    plan: free
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/build
     envVars:
