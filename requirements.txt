@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pydantic
+python-dotenv
+smolagents[litellm]
+langchain
+websockets
+requests
+python-multipart
+httpx
+# Use chroma if needed later
+# chromadb

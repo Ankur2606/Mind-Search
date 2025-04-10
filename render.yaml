@@ -1,0 +1,26 @@
+services:
+  # Backend API service
+  - type: web
+    name: mindsearch-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NEBIUS_BASE_URL
+        sync: false
+      - key: NEBIUS_APIKEY
+        sync: false
+      - key: FRONTEND_URL
+        value: https://mindsearch-app.onrender.com
+
+  # Frontend static site
+  - type: web
+    name: mindsearch-app
+    runtime: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: wss://mindsearch-api.onrender.com/ws
